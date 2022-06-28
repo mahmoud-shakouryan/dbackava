@@ -1,4 +1,4 @@
-export const data = [
+export const  data = [
     {
         id: 1,
         videoName: 'آیا تو آن نیمه گمشده‌ی من هستی؟',

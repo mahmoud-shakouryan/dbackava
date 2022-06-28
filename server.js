@@ -1,8 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const videoRouter = require('./routes/videoRouter.js');
-const userRouter = require('./routes/userRouter.js');
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import videoRouter from './routes/videoRouter.js';
+import userRouter from './routes/userRouter.js';
 
 
 

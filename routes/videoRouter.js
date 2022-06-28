@@ -1,6 +1,7 @@
 import express from 'express';
-import expressAsyncHandler from 'express-async-handler';
-import {data} from '../data.js';
+import expressAsyncHandler  from 'express-async-handler';
+import {data}  from '../data.js';
+
 
 
 const videoRouter = express.Router();
@@ -31,7 +32,7 @@ videoRouter.get('/seed', expressAsyncHandler(async (req, res) =>{
 
 
 videoRouter.get('/:id', expressAsyncHandler(async (req, res) => {
-    const video = await data.find(a => a.id == req.params.id);
+    const video = data.find(a => a.id == req.params.id);
     if(video){
         return res.send(video);
     }
@@ -39,9 +40,6 @@ videoRouter.get('/:id', expressAsyncHandler(async (req, res) => {
         res.status(404).json({ message: 'این ویدیو وجود ندارد'})
     }
 }))
-
-
-
 
 
 
