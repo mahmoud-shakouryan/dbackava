@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import videoRouter from './routes/videoRouter.js';
 import userRouter from './routes/userRouter.js';
+import payRouter from './routes/payRouter.js';
+
 
 
 
@@ -23,6 +25,7 @@ app.use(cors());
 
 app.use('/api/videos', videoRouter);
 app.use('/api/users', userRouter);
+app.use('/api/pay', payRouter);
 app.use((err, req, res, next) => { 
     console.log('expressAsyncHandler error from api to client')
     res.status(500).send({ message: err.message })
