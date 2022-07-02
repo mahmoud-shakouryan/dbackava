@@ -9,160 +9,162 @@ export const  data = [
         likes:5,
         duration: "00:30':00'",
         numOfDownloads:10
-    },
-    {
-        id: 2,
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 3, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 4, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 5, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 6, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 7, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 8, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 9, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 10, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 11, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 12, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 13, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 14, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
-    },
-    {
-        id: 15, 
-        videoName: '',
-        videoLink: 'wwww',
-        category: '',
-        desc: '',
-        price: 1000 ,
-        likes:5,
-        duration: "00:30':00'",
-        numOfDownloads:10
     }
+]
+//     },
+//     {
+//         id: 2,
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 3, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 4, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 5, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 6, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 7, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 8, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 9, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 10, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 11, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 12, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 13, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 14, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     },
+//     {
+//         id: 15, 
+//         videoName: '',
+//         videoLink: 'wwww',
+//         category: '',
+//         desc: '',
+//         price: 1000 ,
+//         likes:5,
+//         duration: "00:30':00'",
+//         numOfDownloads:10
+//     }
 
-];
+// ];
