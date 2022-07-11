@@ -10,15 +10,13 @@ const payRouter = express.Router();
 
 
 payRouter.post('/', isAuth, expressAsyncHandler(async (req, res) =>{
-    const params = { merchant_id: '1b339e9c-96eb-4761-93b5-0426f0dee81a', amount: req.body.price, callback_url: 'http://www.avayejan.ir/api/pay/callback', description:`${req.body.videoId}` };
+    const params = { merchant_id: "1b339e9c-96eb-4761-93b5-0426f0dee81a", amount: req.body.price, callback_url: 'http://www.avayejan.ir/api/pay/callback', description:`${req.body.videoId}` };
     const response = await axios.post('https://api.zarinpal.com/pg/v4/payment/request.json', params).catch(err=> console.log('err', err));
     if(response.data.data.code === 100){
-        const newPayment = new Payment({ user: req.user._id, amount: req.body.price, resNumber: response.data.data.authority});
+        const newPayment = new Payment({ user: req.body.userId, amount: req.body.price, resNumber: response.data.data.authority});
          await newPayment.save();
-        
-         res.send({ 'authority': response.data.data.authority }); 
-         
-    }
+        res.redirect(`https://www.zarinpal.com/pg/StartPay/${response.data.data.authority}`);
+        }
     else{
         res.status(404).send({ message: 'error'})
     }
@@ -56,3 +54,4 @@ payRouter.get('/callback', expressAsyncHandler(async (req, res) =>{
 
 
 export default payRouter;
+        //  res.send({ 'authority': response.data.data.authority }); 
