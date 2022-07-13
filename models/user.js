@@ -5,7 +5,8 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required:true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    pays: {type: Number, default: 0 }
+    paysSoFar: { type: Number, default: 0 },
+    paidVidIds: [ Number ]
     }
     ,
     { timestamps: true }

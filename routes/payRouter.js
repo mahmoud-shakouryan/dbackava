@@ -41,23 +41,24 @@ payRouter.post('/',isAuth,  expressAsyncHandler((req, res)=>{
 
 payRouter.get('/callback', expressAsyncHandler(async (req, res) =>{
     try{
-        if( req.query.Status && req.query.Status !== 'OK'){
-            return res.send({ message: 'تراکنش ناموفق'});
-        }
-        const payment = await Payment.findOne({ resNumber: req.query.Authority });
-        if(!payment) {
-            return res.send({ message: 'چنین تراکنشی وجود ندارد'});
-        }
-        let params = { merchant_id: '1b339e9c-96eb-4761-93b5-0426f0dee81a', amount: payment.amount, Authority: req.query.Authority };
-        const response = await axios.post('https://api.zarinpal.com/pg/v4/payment/verify.json', params).catch(err=>console.log('axios error>>>', err));
-        if(response.status === 100){     
-            payment.isPaid = true;
-            await payment.save();
-            res.redirect('http://www.avayejan.ir/videos')
-        }
-        else{
-            return res.send({ message: 'تراکنش ناموفق بود'});
-        }
+        console.log('umad tu callback', req)
+        // if( req.query.Status && req.query.Status !== 'OK'){
+        //     return res.send({ message: 'تراکنش ناموفق'});
+        // }
+        // const payment = await Payment.findOne({ resNumber: req.query.Authority });
+        // if(!payment) {
+        //     return res.send({ message: 'چنین تراکنشی وجود ندارد'});
+        // }
+        //let params = { merchant_id: '1b339e9c-96eb-4761-93b5-0426f0dee81a', amount: payment.amount, Authority: req.query.Authority };
+        //const response = await axios.post('https://api.zarinpal.com/pg/v4/payment/verify.json', params).catch(err=>console.log('axios error>>>', err));
+        // if(response.status === 100){     
+        //     payment.isPaid = true;
+        //     await payment.save();
+        //     res.redirect('http://www.avayejan.ir/videos')
+        // }
+        // else{
+        //     return res.send({ message: 'تراکنش ناموفق بود'});
+        // }
 
     }
     catch(error){
@@ -71,4 +72,3 @@ payRouter.get('/callback', expressAsyncHandler(async (req, res) =>{
 
 
 export default payRouter;
-        //  res.send({ 'authority': response.data.data.authority }); 
