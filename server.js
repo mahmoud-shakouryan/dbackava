@@ -1,9 +1,9 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import videoRouter from './routes/videoRouter.js';
-import userRouter from './routes/userRouter.js';
-import payRouter from './routes/payRouter.js';
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const videoRouter = require('./routes/videoRouter.js');
+const userRouter = require('./routes/userRouter.js');
+const payRouter = require('./routes/payRouter.js');
 
 
 
@@ -26,7 +26,7 @@ app.use('/api/videos', videoRouter);
 app.use('/api/users', userRouter);
 app.use('/api/pay', payRouter);
 app.use((err, req, res, next) => { 
-    console.log('expressAsyncHandler error from api to client')
+    console.log('expressAsyncHandler error = require( api to client')
     res.status(500).send({ message: err.message })
 });
 

@@ -1,13 +1,13 @@
-import axios from 'axios';
-import express from 'express';
-import expressAsyncHandler from 'express-async-handler';
-import {data} from '../data.js';
-import Payment from '../models/payment.js';
-import User from '../models/user.js';
-import { S3Client, GetObjectCommand} from '@aws-sdk/client-s3';
-import { S3RequestPresigner } from '@aws-sdk/s3-request-presigner';
-import { createRequest } from '@aws-sdk/util-create-request';
-import { formatUrl } from '@aws-sdk/util-format-url';
+const axios = require('axios');
+const express = require('express');
+const expressAsyncHandler = require('express-async-handler');
+const {data} = require('../data.js');
+const Payment = require('../models/payment.js');
+const User = require('../models/user.js');
+const { S3Client, GetObjectCommand} = require('@aws-sdk/client-s3');
+const { S3RequestPresigner } = require('@aws-sdk/s3-request-presigner');
+const { createRequest } = require('@aws-sdk/util-create-request');
+const { formatUrl } = require('@aws-sdk/util-format-url');
 
 
 
@@ -22,21 +22,23 @@ videoRouter.get('/', expressAsyncHandler(async (req, res) =>{
     
 
 videoRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
+    console.log('umad tu /dllist')
     const { status, order_id, userId, payId } = req.body;
     if( status == null){
         const user = await User.findById(userId)
         return res.send( user.paidVidIds )
     }
-    if(status == 10000){
+    if(status == 1){
         return res.send({ message: 'پرداخت انجام نشده است'});
     }
     else if(status == 2){
         return res.send({ message: 'پرداخت ناموفق بوده است'});
     }
-    else if(status ==3){
+    else if(status == 3){
         return res.send({ message: 'خطا رخ داده است'});
     }
-    else if(status == 1){
+    else if(status == 100){
+        console.log('umad tu if(status == 100)')
         const payment = await Payment.findOne({ paymentId: payId });
         if(!payment){
             return res.send({ message: 'چنین تراکنشی وجود ندارد'})
@@ -44,7 +46,8 @@ videoRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
         const body = { 'id': payId, 'order_id': order_id }
         try{
             const response = await axios.post('https://api.idpay.ir/v1/payment/inquiry', body, { headers: { 'Content-Type': 'application/json', 'X-API-KEY': '8140f12b-92de-4dac-b720-9b2e8dd8b6ec', 'X-SANDBOX': true }})
-            if( response.data.status == 1){
+            console.log(reponse.data)
+            if( response.data.status == 100){
                 let paysSoFar = +response.data.amount;
                 const user = await User.findById(userId)
                 if(user.paysSoFar){
@@ -73,6 +76,7 @@ videoRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
 videoRouter.post('/listtoget', expressAsyncHandler(async(req, res) =>{
     const fileName = req.body.videoPartName;
     const s3 = new S3Client({ region: 'default', endpoint: 'https://s3.ir-thr-at1.arvanstorage.com', forcePathStyle: false, credentials: { accessKeyId: 'cd642d50-c891-4f1c-9d62-3c929e5b7e5c', secretAccessKey: '46c4b12ed300a4e49cfa8fc86d424c5f10137963feaf1655782750134996bbc9' }});
+
     const clientParams = {
         Bucket: 'avayejan',
         Key: fileName,
@@ -106,4 +110,4 @@ videoRouter.get('/:id', expressAsyncHandler(async (req, res) => {
 
 
 
-export default videoRouter;
+module.exports = videoRouter;

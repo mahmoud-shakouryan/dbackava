@@ -1,8 +1,8 @@
-import express  from 'express' ;
-import expressAsyncHandler  from 'express-async-handler' ;
-import jwt  from 'jsonwebtoken' ;
-import bcrypt  from 'bcryptjs' ;
-import User  from '../models/user.js' ;
+const express  = require('express');
+const expressAsyncHandler  = require('express-async-handler');
+const jwt  = require('jsonwebtoken');
+const bcrypt  = require('bcryptjs');
+const User  = require('../models/user.js');
 
 
 
@@ -30,4 +30,4 @@ userRouter.post('/signup', expressAsyncHandler(async (req, res)=>{
 }))
 
 
-export default userRouter;
+module.exports = userRouter;

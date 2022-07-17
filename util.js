@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken') ;
 
 
 export const isAuth = (req, res, next) =>{
@@ -21,4 +21,8 @@ export const isAuth = (req, res, next) =>{
         console.log('errore if(authorization) else tuye isAuth');
         res.status(401).send({ message: 'you are not authorized'});
     }
-}
+};
+
+
+
+
