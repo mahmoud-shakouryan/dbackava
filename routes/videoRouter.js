@@ -4,37 +4,22 @@ import expressAsyncHandler from 'express-async-handler';
 import {data} from '../data.js';
 import Payment from '../models/payment.js';
 import User from '../models/user.js';
-import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
-import fs from 'fs';
+import { S3Client, GetObjectCommand} from '@aws-sdk/client-s3';
+import { S3RequestPresigner } from '@aws-sdk/s3-request-presigner';
+import { createRequest } from '@aws-sdk/util-create-request';
+import { formatUrl } from '@aws-sdk/util-format-url';
+
 
 
 
 const videoRouter = express.Router();
 
 
-
-// videoRouter.get('/', expressAsyncHandler( async(req, res) => {
-//     const videos = await Video.find({});
-//     if(videos){
-//         res.json(videos);
-//     }else{
-//         res.status.send({ message: 'No videos'});
-//     }
-// }));
-
 videoRouter.get('/', expressAsyncHandler(async (req, res) =>{
     const videos = data;
     res.send(videos);
 }));
     
-
-
-// videoRouter.get('/seed', expressAsyncHandler(async (req, res) =>{
-//     const createdVideos = await Video.insertMany(data);
-//     res.json(createdVideos);
-// }))
-
-
 
 videoRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
     const { status, order_id, userId, payId } = req.body;
@@ -83,35 +68,25 @@ videoRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
     
 }));
 
-videoRouter.get('/download', expressAsyncHandler((req, res) =>{
-    console.log('umad tu /download');
-    const s3 = new S3Client({
-        region: 'default',
-        endpoint: 'https://s3.ir-thr-at1.arvanstorage.com',
-        credentials: {
-            accessKeyId: 'cd642d50-c891-4f1c-9d62-3c929e5b7e5c',
-            secretAccessKey: '46c4b12ed300a4e49cfa8fc86d424c5f10137963feaf1655782750134996bbc9',
-        }
-    });
 
-    const param = { Bucket: 'avayejan', Key: 'fa37b26f-cd76-556f-bb53-10e07d3b5220' };
 
-    const run = async () => {
-        try {
-            const data = await s3.send(new GetObjectCommand(param));
-            console.log(data)
-            const ws = fs.createWriteStream(
-                __dirname + '/../files/download-from-nodejs-sdk.png'
-            );
-            data.Body.pipe(ws);
-            console.log('Success');
-        } catch (err) {
-            console.log('Error', err);
-        }
+videoRouter.post('/listtoget', expressAsyncHandler(async(req, res) =>{
+    const fileName = req.body.videoPartName;
+    const s3 = new S3Client({ region: 'default', endpoint: 'https://s3.ir-thr-at1.arvanstorage.com', forcePathStyle: false, credentials: { accessKeyId: 'cd642d50-c891-4f1c-9d62-3c929e5b7e5c', secretAccessKey: '46c4b12ed300a4e49cfa8fc86d424c5f10137963feaf1655782750134996bbc9' }});
+    const clientParams = {
+        Bucket: 'avayejan',
+        Key: fileName,
     };
-
-    run();
-
+    const signedRequest = new S3RequestPresigner(s3.config);
+        try {
+            const request = await createRequest(s3, new GetObjectCommand(clientParams));
+            const signedUrl = formatUrl(
+            await signedRequest.presign(request, { expiresIn: 60 * 60 * 24 }));
+            console.log(`download url: ${signedUrl}`);
+           return res.send(`${signedUrl}`)
+        } catch (err) {
+            console.log('Error creating presigned URL', err);
+        }
 }))
 
 
