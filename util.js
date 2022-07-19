@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken') ;
 
 
-export const isAuth = (req, res, next) =>{
+exports.isAuth = (req, res, next) =>{
     console.log('umad isAuth')
     const authorization = req.headers.authorization;
     console.log(authorization)
