@@ -50,7 +50,7 @@ userRouter.post('/signup', [ check('email').isEmail().withMessage('لطفا ای
     const user = new User({ name: req.body.name, email: req.body.email, password: bcrypt.hashSync(req.body.password, 8)});
     const createdUser = await user.save();
     const token = jwt.sign({ _id:createdUser._id, name:createdUser.name, email:createdUser.email }, process.env.JWT_SECRET || 'somethingsupersupersecret', { expiresIn: '30d'});
-    res.send({ _id:createdUser.id, name:createdUser.name, email:createdUser.email, token:token});
+    res.send({ _id:createdUser.id, name:createdUser.name, email:createdUser.email, paidVidIds: user.paidVidIds, token:token});
 }))
 
 
