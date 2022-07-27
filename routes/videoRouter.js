@@ -19,7 +19,7 @@ videoRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
         const user = await User.findById(userId)
         return res.send( user.paidVidIds )
     }
-    if(status == 10000){
+    if(status == 1){
         return res.send({ message: 'پرداخت انجام نشده است'});
     }
     else if(status == 2){
@@ -28,7 +28,7 @@ videoRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
     else if(status ==3){
         return res.send({ message: 'خطا رخ داده است'});
     }
-    else if(status == 1){
+    else if(status == 100){
         const payment = await Payment.findOne({ paymentId: payId });
         if(!payment){
             return res.send({ message: 'چنین تراکنشی وجود ندارد'})
@@ -36,7 +36,7 @@ videoRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
         const body = { 'id': payId, 'order_id': order_id }
         try{
             const response = await axios.post('https://api.idpay.ir/v1/payment/inquiry', body, { headers: { 'Content-Type': 'application/json', 'X-API-KEY': '3e1b9437-893a-417f-9355-1ba934862ccb'}})
-            if( response.data.status == 1){
+            if( response.data.status == 100){
                 let paysSoFar = +response.data.amount;
                 const user = await User.findById(userId)
                 if(user.paysSoFar){
