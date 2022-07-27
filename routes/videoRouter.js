@@ -35,7 +35,7 @@ videoRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
         }
         const body = { 'id': payId, 'order_id': order_id }
         try{
-            const response = await axios.post('https://api.idpay.ir/v1/payment/inquiry', body, { headers: { 'Content-Type': 'application/json', 'X-API-KEY': '8140f12b-92de-4dac-b720-9b2e8dd8b6ec'}})
+            const response = await axios.post('https://api.idpay.ir/v1/payment/inquiry', body, { headers: { 'Content-Type': 'application/json', 'X-API-KEY': '3e1b9437-893a-417f-9355-1ba934862ccb'}})
             if( response.data.status == 1){
                 let paysSoFar = +response.data.amount;
                 const user = await User.findById(userId)
