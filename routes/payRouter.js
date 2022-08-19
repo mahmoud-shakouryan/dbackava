@@ -26,7 +26,7 @@ payRouter.post('/',isAuth,  expressAsyncHandler((req, res)=>{
     })
 }));
 
-payRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
+payRouter.post('/status', expressAsyncHandler(async (req, res)=>{
     const { status, order_id, userId, payId } = req.body;
     if( status == null){
         const user = await User.findById(userId)
@@ -48,7 +48,7 @@ payRouter.post('/dllist', expressAsyncHandler(async (req, res)=>{
         }
         const body = { 'id': payId, 'order_id': order_id }
         try{
-            const response = await axios.post('https://api.idpay.ir/v1/payment/inquiry', body, { headers: { 'Content-Type': 'application/json', 'X-API-KEY': '3e1b9437-893a-417f-9355-1ba934862ccb'}})
+            const response = await axios.post('https://api.idpay.ir/v1.1/payment/verify', body, { headers: { 'Content-Type': 'application/json', 'X-API-KEY': '3e1b9437-893a-417f-9355-1ba934862ccb'}})
             if( response.status == 200){
                 const payerMail = response.data.payer.mail;
                 let paysSoFar = +response.data.amount;
