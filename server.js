@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const videoRouter = require('./routes/videoRouter.js');
 const userRouter = require('./routes/userRouter.js');
 const payRouter = require('./routes/payRouter.js');
+const myVidsLinksRouter = require('./routes/videoRouter.js');
 
 
 
@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 
-app.use('/api/videos', videoRouter);
+app.use('/api/videos', myVidsLinksRouter);
 app.use('/api/users', userRouter);
 app.use('/api/pay', payRouter);
 app.use((err, req, res, next) => { 
