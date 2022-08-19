@@ -1,7 +1,6 @@
 const express = require('express');
 const expressAsyncHandler = require('express-async-handler');
 const Payment = require('../models/payment.js');
-const  Payment = require('../models/payment.js');
 const  User = require('../models/user.js');
 const { isAuth } = require('../util.js')
 const axios = require( 'axios');
