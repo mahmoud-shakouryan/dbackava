@@ -20,7 +20,7 @@ myVidsLinksRouter.post('/uservids', expressAsyncHandler(async(req, res)=>{
         return res.send( user.paidVidIds )
     }
     const body = { 'id': payId, 'order_id': order_id }
-    const response = await axios.post('https://api.idpay.ir/v1.1/payment/inquiry', body, { headers: { 'Content-Type': 'application/json', 'X-API-KEY': '3e1b9437-893a-417f-9355-1ba934862ccb', 'X-SANDBOX': 1}})
+    const response = await axios.post('https://api.idpay.ir/v1.1/payment/inquiry', body, { headers: { 'Content-Type': 'application/json', 'X-API-KEY': '3e1b9437-893a-417f-9355-1ba934862ccb'}})
     if( response.status == 200){
     const payment = await Payment.findOne({ paymentId: payId });
     let paysSoFar = +response.data.amount;
