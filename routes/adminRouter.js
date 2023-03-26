@@ -2,7 +2,6 @@ const express = require("express");
 const expressAsyncHandler = require("express-async-handler");
 const User = require("../models/user.js");
 const Payment = require("../models/payment.js");
-const mongoose = require("mongoose");
 
 const adminRouter = express.Router();
 
