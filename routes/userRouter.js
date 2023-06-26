@@ -51,7 +51,17 @@ userRouter.post(
 userRouter.post(
   "/signup",
   [
-    check("email").isEmail().withMessage("لطفا ایمیل معتبر وارد کنید"),
+    check("email")
+      .isEmail()
+      .withMessage("لطفا ایمیل معتبر وارد کنید")
+      .custom(async (value, { req }) => {
+        const user = await User.find({ email: req.body.email });
+        console.log("user signup >>>>>>>>>>>>>>>>>>>>>>>>>>>", user);
+        if (user.length > 0) {
+          throw new Error("email exists!");
+        }
+      })
+      .withMessage("این ایمیل یکبار ثبت شده است"),
     body("password")
       .isLength({ min: 5 })
       .withMessage("پسوورد باید حداقل دارای 5 کاراکتر باشد")
@@ -59,7 +69,6 @@ userRouter.post(
       .withMessage("پسوورد باید فقط شامل اعداد و حروف باشد"),
     body("confirm")
       .custom((value, { req }) => {
-        console.log(req.body.password, req.body.confirmPassword);
         if (req.body.password !== req.body.confirmPassword) {
           throw new Error("Passwords don't match");
         } else {
