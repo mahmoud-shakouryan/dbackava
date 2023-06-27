@@ -1,10 +1,10 @@
-import express from "express";
-import expressAsyncHandler from "express-async-handler";
-import User from "../models/user.js";
-import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
-import { S3RequestPresigner } from "@aws-sdk/s3-request-presigner";
-import { createRequest } from "@aws-sdk/util-create-request";
-import { formatUrl } from "@aws-sdk/util-format-url";
+const express = require("express");
+const expressAsyncHandler = require("express-async-handler");
+const User = require("../models/user.js");
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
+const { S3RequestPresigner } = require("@aws-sdk/s3-request-presigner");
+const { createRequest } = require("@aws-sdk/util-create-request");
+const { formatUrl } = require("@aws-sdk/util-format-url");
 
 const myVidsLinksRouter = express.Router();
 
@@ -59,4 +59,4 @@ myVidsLinksRouter.post(
   })
 );
 
-export default myVidsLinksRouter;
+module.exports = myVidsLinksRouter;

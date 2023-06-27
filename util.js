@@ -1,7 +1,7 @@
-import jwt from "jsonwebtoken";
-import axios from "axios";
+const jwt = require("jsonwebtoken");
+const axios = require("axios");
 
-export const isAuth = (req, res, next) => {
+exports.isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
     const token = authorization.slice(7, authorization.length);
@@ -23,7 +23,7 @@ export const isAuth = (req, res, next) => {
   }
 };
 
-export async function inquiry(payId, order_id) {
+exports.inquiry = async function inquiry(payId, order_id) {
   const body = { id: payId, order_id: order_id };
   const response = await axios.post(
     "https://api.idpay.ir/v1.1/payment/inquiry",
@@ -37,4 +37,4 @@ export async function inquiry(payId, order_id) {
     }
   );
   return response;
-}
+};

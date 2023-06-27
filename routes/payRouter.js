@@ -1,9 +1,9 @@
-import express from "express";
-import expressAsyncHandler from "express-async-handler";
-import User from "../models/user.js";
-import { isAuth } from "../util.js";
-import axios from "axios";
-import { inquiry } from "../util.js";
+const express = require("express");
+const expressAsyncHandler = require("express-async-handler");
+const User = require("../models/user.js");
+const { isAuth } = require("../util.js");
+const axios = require("axios");
+const { inquiry } = require("../util.js");
 
 const payRouter = express.Router();
 
@@ -120,4 +120,4 @@ payRouter.post(
   })
 );
 
-export default payRouter;
+module.exports = payRouter;
